@@ -5,11 +5,15 @@ openai.api_key = APIkeys.APIKey
 
 response = openai.Completion.create(
     model="text-davinci-003",
-    prompt="Topic: Breakfast\nTwo-Sentence Horror Story: He always stops crying when I pour the milk on his cereal. I just have to remember not to let him see his face on the carton.\n    \nTopic: Wind\nTwo-Sentence Horror Story:",
-    temperature=0.8,
-    max_tokens=60,
+    prompt="Create 10 simple creative sentences for 5-7 year olds:Jack playing with his toy bus.",
+    temperature=0.7,
+    max_tokens=256,
     top_p=1,
-    frequency_penalty=0.5,
+    frequency_penalty=0,
     presence_penalty=0,
 )
-print(response["choices"][0]["text"])
+
+text = response["choices"][0]["text"]
+
+with open("sentences.txt", "a+") as f:
+    f.write(text.lstrip() + "\n")
