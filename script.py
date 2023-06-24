@@ -1,5 +1,7 @@
 from config.config_files import APIkeys
 import openai
+from gtts import gTTS
+import os
 
 openai.api_key = APIkeys.APIKey
 
@@ -43,8 +45,24 @@ def stories(topic):
         f.write(header + "\n" + story)
 
 
+def text_to_speech(header, prompt):
+    tts = gTTS(prompt)
+    tts.save(f"./outputs/sound/{header}.mp3")
+
+
 if __name__ == "__main__":
-    with open("./outputs/sentences.txt", "r") as file:
-        contents = file.readlines()
-        for i in contents:
-            stories(i)
+    ### Creating stories
+    # with open("./outputs/sentences.txt", "r") as file:
+    #     contents = file.readlines()
+    #     for i in contents:
+    #         stories(i)
+    #         print("Generated...")
+
+    ### Creating Audio
+    directory = "./outputs"
+    for files in os.listdir(directory):
+        if files.endswith(".txt") and files != "sentences.txt":
+            with open(os.path.join(directory, files)) as f:
+                content = f.readlines()
+                prompt = "".join(content[1:])
+                text_to_speech(header=files[:-4], prompt=prompt)
