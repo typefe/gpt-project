@@ -58,11 +58,12 @@ if __name__ == "__main__":
     #         stories(i)
     #         print("Generated...")
 
-    ### Creating Audio
-    directory = "./outputs"
-    for files in os.listdir(directory):
-        if files.endswith(".txt") and files != "sentences.txt":
-            with open(os.path.join(directory, files)) as f:
-                content = f.readlines()
-                prompt = "".join(content[1:])
-                text_to_speech(header=files[:-4], prompt=prompt)
+    # ### Creating Audio
+    # directory = "./outputs"
+    # for files in os.listdir(directory):
+    #     if files.endswith(".txt") and files != "sentences.txt":
+    #         with open(os.path.join(directory, files)) as f:
+    #             content = f.readlines()
+    #             prompt = "".join(content[1:])
+    #             text_to_speech(header=files[:-4], prompt=prompt)
+    pass

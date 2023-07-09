@@ -8,3 +8,4 @@ load_dotenv(find_dotenv())
 @dataclass(frozen=True)
 class APIkeys:
     APIKey: str = os.getenv("testAPI")
+    dirscordToken: str = os.getenv("discordToken")
