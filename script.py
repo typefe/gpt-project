@@ -24,6 +24,8 @@ def sentences(n="12", age="5-7"):
 
 
 def stories(topic):
+    index, topic = topic.split("_", 1)
+
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=f"Create a 10-12 sentence story for 5-8 age children about '{topic}' and give a title to your story.",
@@ -41,7 +43,7 @@ def stories(topic):
 
     file_header = header.replace(" ", "_").lower() + ".txt"
 
-    with open(rf"./outputs/{file_header}", "a+") as f:
+    with open(rf"./outputs/{index}_{file_header}", "a+") as f:
         f.write(header + "\n" + story)
 
 
@@ -51,11 +53,11 @@ def text_to_speech(header, prompt):
 
 
 if __name__ == "__main__":
-    ### Creating stories
+    # ### Creating stories
     # with open("./outputs/sentences.txt", "r") as file:
     #     contents = file.readlines()
-    #     for i in contents:
-    #         stories(i)
+    #     for e, i in enumerate(contents):
+    #         stories(f"{str(e)}_{i}")
     #         print("Generated...")
 
     # ### Creating Audio
