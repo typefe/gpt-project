@@ -5,6 +5,7 @@ import requests
 from dotenv import load_dotenv
 from PIL import Image
 import os
+import time
 
 discord_token = APIkeys.dirscordToken
 
